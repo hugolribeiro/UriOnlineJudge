@@ -21,6 +21,8 @@ public class Main {
          int b = sc.nextInt();
          int prod = a * b;
          System.out.printf("PROD = %d\n", prod);
+
+         sc.close();
  
     }
  
