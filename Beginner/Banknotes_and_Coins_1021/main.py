@@ -1,3 +1,5 @@
+import math
+
 notes_values = {
     100.00: 0,
     50.00: 0,
@@ -24,19 +26,19 @@ notes = list(notes_values.keys())
 notes_index = 0
 while value_backup >= 2:
     actual_note = notes[notes_index]
-    while value_backup >= actual_note:
-        notes_values[actual_note] += 1
-        value_backup -= actual_note
-        value_backup = round(value_backup, 2)
+    amount_notes = value_backup // actual_note
+    value_backup -= amount_notes * actual_note
+    value_backup = round(value_backup, 2)
+    notes_values[actual_note] = amount_notes
     notes_index += 1
 coins_index = 0
 coins = list(coins_values.keys())
-while value_backup > 0:
+while value_backup > 0 and coins_index < 6:
     actual_coin = coins[coins_index]
-    while value_backup >= actual_coin:
-        coins_values[actual_coin] += 1
-        value_backup -= actual_coin
-        value_backup = round(value_backup, 2)
+    amount_coins = (value_backup * 100) // (actual_coin * 100)
+    value_backup -= amount_coins * actual_coin
+    value_backup = round(value_backup, 2)
+    coins_values[actual_coin] = amount_coins
     coins_index += 1
 
 print("NOTAS:")
